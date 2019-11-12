@@ -22,6 +22,7 @@ const flash = require('connect-flash');
 
     //Middleware
     app.use((req, res, next) => {
+        // res.locals.varname, we can create global vars using res.locals
         res.locals.success_msg = req.flash('success_msg');
         res.locals.error_msg = req.flash('error_msg');
         next();
@@ -42,7 +43,7 @@ const flash = require('connect-flash');
     // Mongoose
     mongoose.Promise = global.Promise;
     mongoose.connect('mongodb://localhost/BlogApp').then(() => {
-        console.log('---------- Database: Connected');
+        console.log('--- Database: Connected');
     }).catch(err => {
         console.log('Err: ' + err);
     })
@@ -62,5 +63,5 @@ app.use('/admin', admin); //tem q criar um prefixo // chamar grupo de rotas de o
 // Outros   
 const PORT = 3000;
 app.listen(PORT, () => {
-    console.log('---------- Server: Running');
+    console.log('--- Server: Running');
 });
